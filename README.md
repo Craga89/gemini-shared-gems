@@ -1,120 +1,62 @@
-# Gemini Gems Chrome Extension
+# Gemini Shared Gems Manager
 
-A Chrome extension for discovering, capturing, and organizing useful Gemini AI insights and web content.
+A sleek Google Chrome extension that seamlessly integrates your shared Google Gemini Gems directly into the Gemini sidebar. No more switching tabs to find the Gems your team or friends have shared with you.
 
-## Features
+![Extension Preview](assets/icon-128.png)
 
-- **Capture Gems**: Save interesting content from web pages with one click
-- **Quick Access**: View recently saved gems in the popup
-- **Context Menu**: Right-click on selected text to save as a gem
-- **Storage**: Automatically stores up to 100 gems in browser storage
-- **Clean UI**: Modern, responsive popup interface
+## 🚀 Features
 
-## Project Structure
+- **Sidebar Integration**: Adds a "Shared Gems" section directly into the Google Gemini sidebar, matching the native UI style perfectly.
+- **Drive Sync**: Securely fetches Gems shared with you from Google Drive using the Official Google Drive API.
+- **Advanced Navigation**: Uses client-side routing (SPA-friendly) to navigate between Gems without full page reloads.
+- **Smart Sorting**: Built-in sorting (A-Z, Z-A) to help you find your Gems quickly.
+- **Manual Refresh**: Instantly sync the latest shared Gems with a dedicated refresh button.
+- **Theme Support**: Full support for both Gemini's Light and Dark modes.
 
-```
-chrome-ext-gemini-gems/
-├── manifest.json              # Extension configuration (Manifest V3)
-├── src/
-│   ├── popup/
-│   │   ├── popup.html        # Popup UI markup
-│   │   ├── popup.css         # Popup styling
-│   │   └── popup.js          # Popup logic and event handlers
-│   └── scripts/
-│       ├── background.js     # Service worker (V3)
-│       └── content-script.js # Content script for page injection
-├── assets/                    # Icons and images (placeholder directory)
-└── README.md                  # This file
-```
+## 🛠️ Technical Stack
 
-## Installation
+- **Framework**: Vite + CRXJS (Chrome Extension Refresh)
+- **Language**: JavaScript (Content Scripts, Background Service Worker)
+- **API**: Google Drive v3 API (Metadata scope only)
+- **Styling**: Vanilla CSS with Gemini System Tokens
 
-### Development Mode
+## 📦 Installation
 
-1. Open Chrome and go to `chrome://extensions/`
-2. Enable **Developer mode** (toggle in top-right corner)
-3. Click **Load unpacked**
-4. Navigate to and select the `chrome-ext-gemini-gems` folder
-5. The extension will appear in your Chrome toolbar
+### Development Setup
 
-### Production Build
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Craga89/gemini-shared-gems.git
+   cd gemini-shared-gems
+   ```
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+3. Start the development server:
+   ```bash
+   pnpm dev
+   ```
+4. Load in Chrome:
+   - Go to `chrome://extensions/`
+   - Enable **Developer mode**
+   - Click **Load unpacked**
+   - Select the `dist` folder created by Vite.
 
-To prepare for Chrome Web Store submission, create a `.crx` file:
-1. Go to `chrome://extensions/`
-2. Click the menu (⋮) next to the extension
-3. Select **Pack extension**
-4. Choose the project folder
+## 🚢 Production & Publishing
 
-## Usage
+See [PUBLISH.md](./PUBLISH.md) for detailed instructions on how to build, bundle, and publish the extension to the Chrome Web Store.
 
-### Capture a Gem
+### Quick Commands
 
-1. Click the **Gemini Gems** icon in the Chrome toolbar
-2. Click **Capture Gem** to save the current page
-3. View recently saved gems in the popup
+- `pnpm build`: Build the extension for production.
+- `pnpm release`: Build and package into `bundle.zip` for store upload.
+- `pnpm upload`: (Setup required) Push the update to the Chrome Web Store.
 
-### Context Menu
+## 🛡️ Privacy
 
-- Right-click any selected text on a webpage
-- Choose **Save as Gem** from the context menu
-- The selected text is saved along with the page info
+We take your privacy seriously. **Gemini Shared Gems Manager** does not collect or transmit your data. It only communicates with Google Drive APIs to fetch your Gem metadata and stores it locally on your device. See [PRIVACY_POLICY.md](./PRIVACY_POLICY.md) for more details.
 
-### View Saved Gems
+## 📄 License
 
-- Click the extension icon to see the 5 most recent gems
-- All gems are stored locally in your browser
-
-## Development
-
-### Key Files
-
-- **manifest.json**: Defines extension permissions, UI, and scripts
-- **background.js**: Service worker handling storage, context menus, and messaging
-- **popup.js**: Manages the popup UI and gem loading
-- **content-script.js**: Injects scripts into web pages for interaction
-
-### Extending the Extension
-
-To add new features:
-
-1. Update permissions in `manifest.json` if accessing new APIs
-2. Add logic to `background.js` for background operations
-3. Modify `popup.html/css/js` for UI changes
-4. Update `content-script.js` for page interaction
-
-### Chrome Extension APIs Used
-
-- `chrome.tabs`: Access current tab information
-- `chrome.storage.local`: Save and retrieve gems
-- `chrome.contextMenus`: Context menu integration
-- `chrome.runtime.onMessage`: Message passing between scripts
-
-## Testing
-
-1. Load the extension in Chrome via `chrome://extensions/`
-2. Make changes to files
-3. Click the refresh icon next to the extension to reload
-4. Test functionality in the popup and on web pages
-
-## Browser Compatibility
-
-- Chrome 88+ (Manifest V3 support)
-- Chromium-based browsers (Edge, Brave, etc.)
-
-## Future Enhancements
-
-- [ ] Options page for customization
-- [ ] Export gems to JSON/CSV
-- [ ] Sync with cloud storage
-- [ ] Tags and search functionality
-- [ ] Categories for organizing gems
-- [ ] Share gems via links
-- [ ] Dark mode support
-
-## License
-
-MIT License - Feel free to modify and distribute
-
-## Support
-
-For issues or feature requests, create an issue in the project repository.
+This project is licensed under the ISC License.
